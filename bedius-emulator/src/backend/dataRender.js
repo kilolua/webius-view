@@ -22,6 +22,17 @@ const getNextScreens = (str)=>{
 
 }
 
+function compare(a, b) {
+  if (a.length < b.length) {
+    return -1;
+  }
+  if (a.length > b.length) {
+    return 1;
+  }
+  // a должно быть равным b
+  return 0;
+}
+
 const generateNodesJson = (data) => {
   let nodes = []
   let x = 0
@@ -56,7 +67,7 @@ const getFuncName = function(data){
   result = result.map(function(name) {
     return name.substr(0, name.length-2);
   });
-  result = result.filter(item=>item !== "start" && item !== "msg_err")
+  result = result.filter(item=>item !== "start" && item !== "msg_err" && item !== "main")
   let resData = [];
   result.forEach((item, i, arr) => {
     let re = new RegExp(`${item} = function[\\S\\s]*\?(scr.render|return;)`, 'g');
